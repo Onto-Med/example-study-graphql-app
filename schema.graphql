@@ -1,0 +1,70 @@
+interface Entity {
+    name: String!
+}
+
+type Study implements Entity {
+    id: ID
+    name: String!
+    acronym: String
+    country: Country
+    study_design: String
+    study_webpage: String
+    description: String
+    target_population: String
+    target_region: String
+    subject_number: String
+    age: AgeInterval
+    enrol_start: String
+    enrol_stop: String
+    data_access: Boolean
+    data_webpage: String
+    covid_publications: [Publication]
+    pis: [Person]
+    contact: Person
+    issuer: Person
+    languages: [String]
+    instrument_access: String
+    instrument_webpage: String
+    source: String
+}
+type Publication implements Entity {
+    name: String!
+    pmid: Int
+    journal: String
+    authors: [Person]
+}
+type Person implements Entity {
+    name: String!
+    email: String
+    phone: String
+}
+type Country implements Entity {
+    name: String!
+}
+type AgeInterval {
+    min: Float
+    max: Float
+    min_closed: Boolean # true, if interval is closed on left site
+    max_closed: Boolean # true, if interval is closed on right site
+}
+
+input ListStudiesWhereInput {
+    id: ID
+}
+
+input ListStudiesOptionsInput {
+    limit: Int
+}
+
+# root query type
+type Query {
+    studies(
+        where: ListStudiesWhereInput
+        options: ListStudiesOptionsInput
+    ): [Study]!
+}
+
+# GraphQL root schema type
+schema {
+    query: Query
+}
