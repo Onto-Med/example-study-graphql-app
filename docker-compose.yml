@@ -14,10 +14,4 @@ services:
     command: morbo -w schema.graphql study_graphql_app.pl # for development
     # command: hypnotoad -f study_graphql_app.pl            # for production
 
-# Rewrite Network to use non default IP, because it would conflict with an existing IP in the IMISE network
-networks:
-  default:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.23.36.0/24
+
