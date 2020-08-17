@@ -3,8 +3,7 @@ version: '3'
 services:
     webapp:
         container_name: study-graphql-app
-        image: tekki/mojolicious
-        # build: .
+        build: .
         volumes:
             - ./study_graphql_app.pl:/usr/src/app/study_graphql_app.pl
         ports:
