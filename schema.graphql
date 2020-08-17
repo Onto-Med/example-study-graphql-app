@@ -44,19 +44,24 @@ type Country implements Entity {
 type AgeInterval {
     min: Float
     max: Float
-    min_closed: Boolean # true, if interval is closed on left site
-    max_closed: Boolean # true, if interval is closed on right site
+    "true, if interval is closed on left site"
+    min_closed: Boolean
+    "true, if interval is closed on right site"
+    max_closed: Boolean
 }
 
+"input to be used to filter studies"
 input ListStudiesWhereInput {
+    "id of a study"
     id: ID
+    "regex pattern to filter by study name"
+    name: String
 }
 
 input ListStudiesOptionsInput {
     limit: Int
 }
 
-# root query type
 type Query {
     studies(
         where: ListStudiesWhereInput
@@ -64,7 +69,6 @@ type Query {
     ): [Study]!
 }
 
-# GraphQL root schema type
 schema {
     query: Query
 }
