@@ -6,6 +6,7 @@ services:
         build: .
         volumes:
             - ./study_graphql_app.pl:/usr/src/app/study_graphql_app.pl
+            - ./schema.graphql:/usr/src/app/schema.graphql
         ports:
             - 4000:3000
         command: morbo study_graphql_app.pl        # for development
