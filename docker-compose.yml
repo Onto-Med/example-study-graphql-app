@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    webapp:
+        container_name: study-graphql-app
+        image: tekki/mojolicious
+        # build: .
+        volumes:
+            - ./study_graphql_app.pl:/usr/src/app/study_graphql_app.pl
+        ports:
+            - 4000:3000
+        command: morbo study_graphql_app.pl        # for development
+        # command: hypnotoad -f study_graphql_app.pl # for production
+
+# Rewrite Network to use non default IP, because it would conflict with an existing IP in the IMISE network
+networks:
+    default:
+      ipam:
+        driver: default
+        config:
+          - subnet: 172.23.36.0/24
