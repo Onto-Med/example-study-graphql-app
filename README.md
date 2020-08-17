@@ -1,7 +1,8 @@
 # example-study-graphql-app
+
 Mojolicious webapp with GraphQL to provided an API to browse study metadata
 
-# How to use
+## How to use
 
 ```sh
 git clone https://github.com/Onto-Med/example-study-graphql-app
