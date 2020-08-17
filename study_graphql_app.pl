@@ -9,14 +9,14 @@ get '/' => { text => 'This is an example app for GraphQL studies. Navigate to /g
 
 helper get_studies => sub {
     my ($c, $args) = @_;
-    my $filter  = $args->{filter} || {};
+    my $filters = $args->{filters} || {};
     my $options = $args->{options} || {};
 
     state $studies = get_studies();
 
     return $studies
         ->head($options->{limit} // 10)
-        ->grep(sub { filter_studies($_, $filter) })
+        ->grep(sub { filter_studies($_, $filters) })
         ->to_array;
 };
 
@@ -35,15 +35,30 @@ sub get_studies {
 }
 
 sub filter_studies {
-    my $study  = shift;
-    my $filter = shift;
-    my $result = 1;
+    my $study   = shift;
+    my $filters = shift || [];
+    my $result  = 1;
 
-    $result = $study->{id} == $filter->{id} if (defined $filter->{id});
-
-    if (defined (my $pattern = $filter->{name})) {
-        $result = $study->{name} =~ /^$pattern$/;
+    foreach my $filter (@$filters) {
+        last unless $result;
+        my $operator = transform_operator($filter->{operator}, $filter->{value});
+        $result = eval '$study->{$filter->{field}} '. $operator;
     }
 
     return $result;
+}
+
+sub transform_operator {
+    my $operator = shift // '';
+    my $value = shift // '';
+
+    return "<  $value"   if ($operator eq 'LT');
+    return "<= $value"   if ($operator eq 'LE');
+    return ">  $value"   if ($operator eq 'GT');
+    return "!= $value"   if ($operator eq 'NE');
+    return "== $value"   if ($operator eq 'EQ');
+    return "eq '$value'" if ($operator eq 'MATCH');
+    return "=~ /$value/" if ($operator eq 'REGEX_MATCH');
+
+    return '';
 }

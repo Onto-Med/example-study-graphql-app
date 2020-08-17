@@ -2,6 +2,22 @@ interface Entity {
     name: String!
 }
 
+enum Operator {
+    LT
+    LE
+    GE
+    GT
+    NE
+    EQ
+    MATCH
+    REGEX_MATCH
+}
+
+enum OrderDirection {
+    ASC
+    DESC
+}
+
 type Study implements Entity {
     id: ID
     name: String!
@@ -52,19 +68,26 @@ type AgeInterval {
 
 "input to be used to filter studies"
 input ListStudiesFilterInput {
+    operator: Operator
     "id of a study"
-    id: ID
+    field: String
     "regex pattern to filter by study name"
-    name: String
+    value: String
+}
+
+input OrderByInput {
+    direction: OrderDirection
+    field: String
 }
 
 input ListStudiesOptionsInput {
     limit: Int
+    order_by: [OrderByInput]
 }
 
 type Query {
     studies(
-        filter: ListStudiesFilterInput
+        filters: [ListStudiesFilterInput]
         options: ListStudiesOptionsInput
     ): [Study]!
 }
