@@ -9,14 +9,14 @@ get '/' => { text => 'This is an example app for GraphQL studies. Navigate to /g
 
 helper get_studies => sub {
     my ($c, $args) = @_;
-    my $where   = $args->{where} || {};
+    my $filter  = $args->{filter} || {};
     my $options = $args->{options} || {};
 
     state $studies = get_studies();
 
     return $studies
         ->head($options->{limit} // 10)
-        ->grep(sub { filter_studies($_, $where) })
+        ->grep(sub { filter_studies($_, $filter) })
         ->to_array;
 };
 
@@ -36,12 +36,12 @@ sub get_studies {
 
 sub filter_studies {
     my $study  = shift;
-    my $where  = shift;
+    my $filter = shift;
     my $result = 1;
 
-    $result = $study->{id} == $where->{id} if (defined $where->{id});
+    $result = $study->{id} == $filter->{id} if (defined $filter->{id});
 
-    if (defined (my $pattern = $where->{name})) {
+    if (defined (my $pattern = $filter->{name})) {
         $result = $study->{name} =~ /^$pattern$/;
     }
 

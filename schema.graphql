@@ -51,7 +51,7 @@ type AgeInterval {
 }
 
 "input to be used to filter studies"
-input ListStudiesWhereInput {
+input ListStudiesFilterInput {
     "id of a study"
     id: ID
     "regex pattern to filter by study name"
@@ -64,7 +64,7 @@ input ListStudiesOptionsInput {
 
 type Query {
     studies(
-        where: ListStudiesWhereInput
+        filter: ListStudiesFilterInput
         options: ListStudiesOptionsInput
     ): [Study]!
 }
