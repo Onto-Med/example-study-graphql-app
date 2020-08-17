@@ -1,21 +1,23 @@
 version: '3'
 
 services:
-    webapp:
-        container_name: study-graphql-app
-        build: .
-        volumes:
-            - ./study_graphql_app.pl:/usr/src/app/study_graphql_app.pl
-            - ./schema.graphql:/usr/src/app/schema.graphql
-        ports:
-            - 4000:3000
-        command: morbo study_graphql_app.pl        # for development
-        # command: hypnotoad -f study_graphql_app.pl # for production
+  webapp:
+    container_name: study-graphql-app
+    build: .
+    volumes:
+      - ./study_graphql_app.pl:/usr/src/app/study_graphql_app.pl
+      - ./schema.graphql:/usr/src/app/schema.graphql
+      - ./studies.json:/usr/src/app/studies.json
+    ports:
+      - 4000:3000
+    restart: always
+    command: morbo -w schema.graphql study_graphql_app.pl # for development
+    # command: hypnotoad -f study_graphql_app.pl            # for production
 
 # Rewrite Network to use non default IP, because it would conflict with an existing IP in the IMISE network
 networks:
-    default:
-      ipam:
-        driver: default
-        config:
-          - subnet: 172.23.36.0/24
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.23.36.0/24

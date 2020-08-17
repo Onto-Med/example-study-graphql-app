@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "Study title",
+        "acronym": "ST",
+        "country": {
+            "name": "Worldwide"
+        },
+        "study_design": "Multi-wave Cross-sectional",
+        "study_webpage": "https://example.com/",
+        "description": "Study description.",
+        "target_population": "General Population",
+        "target_region": "Worldwide",
+        "subject_number": "20,000 Target is to achieve 250000 for all waves together",
+        "age": {
+            "min": 8,
+            "max": 90,
+            "min_closed": 1,
+            "max_closed": 1
+        },
+        "enrol_start": "2020-03-01",
+        "enrol_stop": "2020-04-20",
+        "data_access": false,
+        "data_webpage": null,
+        "covid_publications": [
+            {
+                "name": "Publication title.",
+                "authors": [ { "name": "Author 1" }, { "name": "Author 2" }, { "name": "Author 3" }, { "name": "Author 4" }, { "name": "Author 5" } ],
+                "journal": "Medical Journal of Australia (submitted)"
+            },
+            {
+                "name": "Publication title.",
+                "authors": [ { "name": "Author 1" }, { "name": "Author 2" } ],
+                "journal": "CMAJ Open (submitted)"
+            }
+        ],
+        "pis": [
+            {
+                "name": "Person 1",
+                "email": "person_1@example.com",
+                "phone": "(123) 456-7890"
+            },
+            {
+                "name": "Person 1",
+                "email": "person_2@example.com",
+                "phone": "(012) 345-6789"
+            }
+        ],
+        "contact": null,
+        "issuer": "Issuer 1",
+        "languages": [ "Albanian", "Arabic", "Azerbaijani", "Bahasa Indonesia", "Bahasa Malaysia", "Bangla", "Chinese (simplified)", "Chinese (traditional)", "Croatian", "Danish", "English", "Farsi", "French", "German", "Greek", "Hebrew", "Hindi", "Italian", "Japanese", "Kannanda", "Kashmiri", "Korean", "Lithuanian", "Marathi", "Nepali", "Persian", "Polish", "Romanian", "Russian", "Serbian", "Slovak", "Spanish", "Swahili", "Swedish", "Tagalog", "Turkish", "Ukranian", "Urdu", "Vietnamese" ],
+        "instrument_access": "Online",
+        "instrument_webpage": "https://example.com/",
+        "source": "Source 1"
+    }
+]
