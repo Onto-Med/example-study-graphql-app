@@ -36,8 +36,14 @@ sub get_studies {
 
 sub filter_studies {
     my $study  = shift;
-    my $where = shift;
+    my $where  = shift;
+    my $result = 1;
 
-    return $study->{id} == $where->{id} if (length $where->{id});
-    return 1;
+    $result = $study->{id} == $where->{id} if (defined $where->{id});
+
+    if (defined (my $pattern = $where->{name})) {
+        $result = $study->{name} =~ /^$pattern$/;
+    }
+
+    return $result;
 }
