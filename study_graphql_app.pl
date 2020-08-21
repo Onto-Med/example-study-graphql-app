@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 use Mojolicious::Lite;
 use JSON::PP qw/decode_json/;
 use GraphQL::Schema;
