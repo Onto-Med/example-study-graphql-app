@@ -11,4 +11,6 @@ docker-compose build
 docker-compose up -d
 ```
 
-After starting docker-compose, navigate to http://localhost:4000/graphql to access the interactive GraphQL interface.
+After starting docker-compose, navigate to <http://localhost:4000/graphql> to access the interactive GraphQL interface.
+
+You can change the port in the `docker-compose.yml` file.
