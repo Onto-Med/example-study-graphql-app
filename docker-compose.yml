@@ -4,10 +4,10 @@ services:
   webapp:
     container_name: study-graphql-app
     build: .
-    volumes:
-      - ./study_graphql_app.pl:/usr/src/app/study_graphql_app.pl
-      - ./schema.graphql:/usr/src/app/schema.graphql
-      - ./studies.json:/usr/src/app/studies.json
+    # volumes:
+    #   - ./study_graphql_app.pl:/usr/src/app/study_graphql_app.pl
+    #   - ./schema.graphql:/usr/src/app/schema.graphql
+    #   - ./studies.json:/usr/src/app/studies.json
     ports:
       - 4000:3000
     restart: always
